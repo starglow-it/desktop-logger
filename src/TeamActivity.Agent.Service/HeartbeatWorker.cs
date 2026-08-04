@@ -15,7 +15,7 @@ public sealed class AgentOptions
 }
 
 public sealed class HeartbeatWorker(
-    IHttpClientFactory clientFactory,
+    HttpClient client,
     IOptions<AgentOptions> options,
     ILogger<HeartbeatWorker> logger) : BackgroundService
 {
@@ -50,7 +50,7 @@ public sealed class HeartbeatWorker(
                 DateTimeOffset.UtcNow,
                 "Healthy",
                 0));
-            using var response = await clientFactory.CreateClient("manager").SendAsync(request, cancellationToken);
+            using var response = await client.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
                 logger.LogWarning("Heartbeat was rejected with status {StatusCode}.", response.StatusCode);
         }
