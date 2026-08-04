@@ -3,6 +3,7 @@ using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
 
 namespace TeamActivity.Tests.Integration;
 
@@ -41,6 +42,7 @@ public sealed class ServerTests : IDisposable
     public void Dispose()
     {
         factory.Dispose();
+        SqliteConnection.ClearAllPools();
         if (Directory.Exists(dataRoot)) Directory.Delete(dataRoot, recursive: true);
     }
 }
