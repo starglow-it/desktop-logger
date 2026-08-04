@@ -181,7 +181,7 @@ public sealed class PrivacyContractTests
         var prohibited = new[] { "Key", "KeyCode", "KeyValue", "MouseButton", "Button" };
         var propertyNames = typeof(ActivityBucketUpload).GetProperties().Select(x => x.Name);
 
-        propertyNames.Should().NotIntersectWith(prohibited);
+        propertyNames.Intersect(prohibited).Should().BeEmpty();
     }
 }
 
@@ -268,7 +268,7 @@ public sealed class EncryptedFileStoreTests : IDisposable
         var stored = await store.StoreAsync(plaintext, new DateOnly(2026, 8, 4));
 
         var diskBytes = await File.ReadAllBytesAsync(Path.Combine(root, stored.RelativePath));
-        diskBytes.Should().NotContainInOrder(plaintext);
+        diskBytes.AsSpan().IndexOf(plaintext).Should().Be(-1);
         (await store.ReadAsync(stored.RelativePath)).Should().Equal(plaintext);
     }
 

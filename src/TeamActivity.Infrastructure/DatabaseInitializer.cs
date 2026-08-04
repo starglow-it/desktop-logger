@@ -7,6 +7,7 @@ public sealed class DatabaseInitializer(TeamActivityDbContext dbContext)
 {
     public async Task InitializeAsync(CancellationToken cancellationToken = default)
     {
+        SQLitePCL.Batteries_V2.Init();
         await dbContext.Database.EnsureCreatedAsync(cancellationToken);
         await dbContext.Database.ExecuteSqlRawAsync("PRAGMA journal_mode=WAL;", cancellationToken);
         await dbContext.Database.ExecuteSqlRawAsync("PRAGMA foreign_keys=ON;", cancellationToken);
