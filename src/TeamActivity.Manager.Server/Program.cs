@@ -29,8 +29,10 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
-var dataRoot = Path.GetFullPath(builder.Configuration["DataRoot"] ??
-    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "TeamActivity"));
+var configuredDataRoot = builder.Configuration["DataRoot"];
+var dataRoot = Path.GetFullPath(string.IsNullOrWhiteSpace(configuredDataRoot)
+    ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "TeamActivity")
+    : configuredDataRoot);
 Directory.CreateDirectory(dataRoot);
 var databasePath = Path.Combine(dataRoot, "teamactivity.db");
 builder.Services.AddDbContext<TeamActivityDbContext>(options =>

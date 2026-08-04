@@ -12,5 +12,6 @@
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio"><PrivateAssets>all</PrivateAssets></PackageReference>
     <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="coverlet.collector"><PrivateAssets>all</PrivateAssets></PackageReference>
   </ItemGroup>
 </Project>

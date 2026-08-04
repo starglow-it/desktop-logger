@@ -3,7 +3,6 @@ using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Configuration;
 
 namespace TeamActivity.Tests.Integration;
 
@@ -15,11 +14,7 @@ public sealed class ServerTests : IDisposable
     public ServerTests()
     {
         factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
-            builder.ConfigureAppConfiguration((_, configuration) =>
-                configuration.AddInMemoryCollection(new Dictionary<string, string?>
-                {
-                    ["DataRoot"] = dataRoot
-                })));
+            builder.UseSetting("DataRoot", dataRoot));
     }
 
     [Fact]
