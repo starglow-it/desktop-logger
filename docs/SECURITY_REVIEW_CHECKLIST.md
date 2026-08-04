@@ -1,0 +1,23 @@
+# Security review checklist
+
+- [x] Raw key/button content absent from contracts and entities.
+- [x] Unknown JSON fields rejected.
+- [x] Enrollment code is random, expiring and one-time.
+- [x] Client cannot choose authoritative employee identity.
+- [x] Device token is random and hashed at rest.
+- [x] API rate limit and no-store/nosniff headers enabled.
+- [x] Server-generated encrypted-file paths resist traversal.
+- [x] AES-256-GCM uses a fresh nonce and authentication tag.
+- [x] Screenshot and remote media fail closed.
+- [ ] Replace device token with mTLS certificate issuance, rotation and revocation.
+- [ ] Add replay window, request nonce and idempotency enforcement to every upload.
+- [ ] Protect agent credentials and data keys with DPAPI and restricted ACLs.
+- [ ] Implement Windows-authenticated RBAC and MFA/Hello for managers.
+- [ ] Add CSRF strategy if browser-originating administrative endpoints are introduced.
+- [ ] Implement screenshot consent, secure-desktop and protected-app exclusions.
+- [ ] Implement encrypted bounded offline queue, retry/backoff/jitter and deletion acknowledgment.
+- [ ] Add key-backed audit checkpoints and verify chain during backup/restore.
+- [ ] Add retention/legal-hold workers, storage caps and forecast alerts.
+- [ ] Run dependency vulnerability scan and threat-model review on every release.
+- [ ] Authenticode-sign executables/MSI and verify signatures during update.
+- [ ] Complete independent penetration test and privacy/legal review before employee deployment.

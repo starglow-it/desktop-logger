@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TeamActivity.Contracts/TeamActivity.Contracts.csproj" />
+    <Project Path="src/TeamActivity.Domain/TeamActivity.Domain.csproj" />
+    <Project Path="src/TeamActivity.Infrastructure/TeamActivity.Infrastructure.csproj" />
+    <Project Path="src/TeamActivity.RemoteSupport/TeamActivity.RemoteSupport.csproj" />
+    <Project Path="src/TeamActivity.Agent.Service/TeamActivity.Agent.Service.csproj" />
+    <Project Path="src/TeamActivity.Agent.Desktop/TeamActivity.Agent.Desktop.csproj" />
+    <Project Path="src/TeamActivity.Manager.Server/TeamActivity.Manager.Server.csproj" />
+    <Project Path="src/TeamActivity.Manager.Desktop/TeamActivity.Manager.Desktop.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TeamActivity.Tests.Unit/TeamActivity.Tests.Unit.csproj" />
+    <Project Path="tests/TeamActivity.Tests.Integration/TeamActivity.Tests.Integration.csproj" />
+    <Project Path="tests/TeamActivity.Tests.EndToEnd/TeamActivity.Tests.EndToEnd.csproj" />
+  </Folder>
+</Solution>

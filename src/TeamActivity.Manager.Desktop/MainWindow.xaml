@@ -1,0 +1,62 @@
+<Window x:Class="TeamActivity.Manager.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TeamActivity Manager" Width="1120" Height="720" MinWidth="900" MinHeight="600"
+        WindowStartupLocation="CenterScreen" Background="#F4F6FA">
+    <Grid>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="220" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+        <Border Background="#111827">
+            <DockPanel Margin="20,24">
+                <StackPanel DockPanel.Dock="Top">
+                    <TextBlock Text="TeamActivity" Foreground="White" FontSize="23" FontWeight="SemiBold" />
+                    <TextBlock Text="Manager console" Foreground="#94A3B8" Margin="0,3,0,28" />
+                    <Border Background="#1E3A8A" CornerRadius="7" Padding="12,10" Margin="0,0,0,5"><TextBlock Text="Team overview" Foreground="White" /></Border>
+                    <Border Padding="12,10" Margin="0,0,0,5"><TextBlock Text="Screenshots (disabled)" Foreground="#64748B" /></Border>
+                    <Border Padding="12,10" Margin="0,0,0,5"><TextBlock Text="Time corrections" Foreground="#CBD5E1" /></Border>
+                    <Border Padding="12,10" Margin="0,0,0,5"><TextBlock Text="Quality reviews" Foreground="#CBD5E1" /></Border>
+                    <Border Padding="12,10" Margin="0,0,0,5"><TextBlock Text="Audit and settings" Foreground="#CBD5E1" /></Border>
+                </StackPanel>
+                <TextBlock DockPanel.Dock="Bottom" Text="Activity telemetry is not a quality score." Foreground="#94A3B8" TextWrapping="Wrap" />
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="28,24">
+            <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+            <DockPanel>
+                <StackPanel>
+                    <TextBlock Text="Team overview" FontSize="28" FontWeight="SemiBold" Foreground="#0F172A" />
+                    <TextBlock Text="Live device health and declared activity state" Foreground="#64748B" Margin="0,4,0,0" />
+                </StackPanel>
+                <Border DockPanel.Dock="Right" HorizontalAlignment="Right" CornerRadius="14" Background="White" Padding="13,7">
+                    <TextBlock Text="{Binding ServerState}" Foreground="#334155" FontWeight="SemiBold" />
+                </Border>
+            </DockPanel>
+
+            <UniformGrid Grid.Row="1" Rows="1" Columns="3" Margin="0,22,0,18">
+                <Border Background="White" CornerRadius="10" Padding="18" Margin="0,0,12,0">
+                    <StackPanel><TextBlock Text="Enrolled devices" Foreground="#64748B" /><TextBlock Text="{Binding DeviceCount}" FontSize="26" FontWeight="Bold" Margin="0,5,0,0" /></StackPanel>
+                </Border>
+                <Border Background="White" CornerRadius="10" Padding="18" Margin="6,0">
+                    <StackPanel><TextBlock Text="Online" Foreground="#64748B" /><TextBlock Text="{Binding OnlineCount}" Foreground="#15803D" FontSize="26" FontWeight="Bold" Margin="0,5,0,0" /></StackPanel>
+                </Border>
+                <Border Background="White" CornerRadius="10" Padding="18" Margin="12,0,0,0">
+                    <StackPanel><TextBlock Text="Open alerts" Foreground="#64748B" /><TextBlock Text="{Binding AlertCount}" Foreground="#B45309" FontSize="26" FontWeight="Bold" Margin="0,5,0,0" /></StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <Border Grid.Row="2" Background="White" CornerRadius="10" Padding="4">
+                <DataGrid ItemsSource="{Binding Devices}" AutoGenerateColumns="False" IsReadOnly="True" BorderThickness="0"
+                          GridLinesVisibility="Horizontal" HeadersVisibility="Column" RowHeight="48" ColumnHeaderHeight="42">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Employee" Binding="{Binding EmployeeName}" Width="2*" />
+                        <DataGridTextColumn Header="Device state" Binding="{Binding State}" Width="*" />
+                        <DataGridTextColumn Header="Activity telemetry" Binding="{Binding CurrentActivityState}" Width="*" />
+                        <DataGridTextColumn Header="Last heartbeat" Binding="{Binding LastHeartbeatUtc}" Width="1.5*" />
+                        <DataGridTextColumn Header="Version" Binding="{Binding ApplicationVersion}" Width="*" />
+                        <DataGridTextColumn Header="Alerts" Binding="{Binding OpenAlertCount}" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

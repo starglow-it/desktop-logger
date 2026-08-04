@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../TeamActivity.Contracts/TeamActivity.Contracts.csproj" />
+    <ProjectReference Include="../TeamActivity.Domain/TeamActivity.Domain.csproj" />
+    <ProjectReference Include="../TeamActivity.Infrastructure/TeamActivity.Infrastructure.csproj" />
+    <ProjectReference Include="../TeamActivity.RemoteSupport/TeamActivity.RemoteSupport.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" />
+  </ItemGroup>
+</Project>
